@@ -11,7 +11,6 @@ import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
 
 import is.pims.MercadoManazo.dto.Opinion;
-import is.pims.MercadoManazo.dto.Producto;
 import is.pims.MercadoManazo.dto.RespuestaApi;
 
 @Repository

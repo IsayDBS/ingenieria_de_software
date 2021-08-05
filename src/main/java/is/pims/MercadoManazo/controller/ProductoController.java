@@ -27,18 +27,15 @@ public class ProductoController {
 		return new ResponseEntity<>(productoservice.getProductos(), HttpStatus.OK);
 	}
 	
-	
 	@GetMapping("/{nombre_producto}")
 	public ResponseEntity<Object> getProductosBusq(@PathVariable("nombre_producto") String nombre_producto){
 		return new ResponseEntity<>(productoservice.getProductosBusq(nombre_producto), HttpStatus.OK);
 	}
 	
-	/*
-	@GetMapping("/{id_producto}")
-	public ResponseEntity<Object> getProducto(@PathVariable("id_producto") int id_producto){
-		return new ResponseEntity<>(productoservice.getProducto(id_producto), HttpStatus.OK);
+	@GetMapping("/{nombre_producto}/{id_producto}")
+	public ResponseEntity<Object> getProducto(@PathVariable("id_producto") int id_producto, @PathVariable("nombre_producto") String nombre_producto){
+		return new ResponseEntity<>(productoservice.getProducto(id_producto, nombre_producto), HttpStatus.OK);
 	}
-	*/
 	
 	@PostMapping
 	public ResponseEntity<Object> createProducto(@RequestBody Producto producto){
