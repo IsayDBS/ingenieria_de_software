@@ -61,8 +61,7 @@ public class ProductoRepository {
 		return productos;
 	}
 	
-	/*
-	public Producto getProducto(int id) {
+	public Producto getProducto(int id, String nombre) {
 		Producto producto = new Producto();
 		producto = jdbcTemplate.queryForObject("SELECT * FROM producto WHERE id_producto = " + id + ";", new RowMapper<Producto>() {
 			
@@ -82,7 +81,6 @@ public class ProductoRepository {
 		});
 		return producto;
 	}
-	*/
 	
 	public RespuestaApi createProducto(Producto producto) {
 		jdbcTemplate.update("INSERT INTO producto (id_vendedor, nombre, descripcion, precio, inventario, imagen) VALUES("
