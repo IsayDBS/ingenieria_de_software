@@ -11,6 +11,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import javax.persistence.*;
 import java.util.Collection;
 import java.util.Collections;
+import java.util.Random;
 
 @Entity
 @Getter
@@ -38,18 +39,16 @@ public class Usuario implements UserDetails {
     private String telefono;
     @Enumerated(EnumType.STRING)
     private RolUsuario rolUsuario;
-    private Boolean locked;
-    private Boolean enabled;
+    private Boolean locked = false;
+    private Boolean enabled = false;
 
-    public Usuario(String nombre, String apellido, String correo, String contrasena, String telefono,RolUsuario rolUsuario, Boolean locked, Boolean enabled) {
+    public Usuario(String nombre, String apellido, String correo, String telefono, RolUsuario rolUsuario) {
         this.nombre = nombre;
         this.apellido = apellido;
         this.correo = correo;
-        this.contrasena = contrasena;
+        this.contrasena = generaContrasena(8);
         this.telefono = telefono;
         this.rolUsuario = rolUsuario;
-        this.locked = locked;
-        this.enabled = enabled;
     }
 
     @Override
@@ -60,7 +59,7 @@ public class Usuario implements UserDetails {
 
     @Override
     public String getPassword() {
-        return null;
+        return contrasena;
     }
 
     @Override
@@ -86,5 +85,15 @@ public class Usuario implements UserDetails {
     @Override
     public boolean isEnabled() {
         return enabled;
+    }
+
+    private String generaContrasena(int longitud){
+        int left = 48; //ASCII 0
+        int right = 122; //ASCII z
+        Random r = new Random();
+
+        return r.ints(left,right+1)
+                                .filter(i->(i<=57 || i >= 65) && (i<= 90 || i >= 97))
+                                .limit(longitud).collect(StringBuilder::new,StringBuilder::appendCodePoint,StringBuilder::append).toString();
     }
 }
