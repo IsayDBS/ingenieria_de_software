@@ -1,45 +1,11 @@
 body{
-	background: #EEEEEE;
+  background: #EEEEEE;
 }
 .custom-header{
-	background: #FF8181;
-}
-
-.navbar-brand{
-	color: white;
-	padding: 20px;
+  background: #FF8181;
 }
 
 .dropdown-menu ul {
-	color: whitesmoke;
-	float: left;
-	list-style: none;
-}
-
-.rectangulo{
-  background-color: #FF8181;
-  border: 2px black;
-  margin: 20px;
-  height: 650px;
-}
-
-.tv{
-  position: relative;
-  left: 30px;
-  top: 20px;
-  width: 500px;
-  height: 500px;
-}
-
-.con{
-  position: relative;
-  left: 700px;
-  bottom: 450px;
-}
-
-.titulo{
-  position: relative;
-  left: 500px;
-  top: 25px;
-  font-size: 300%;
+    float: left;
+    list-style: none;
 }
