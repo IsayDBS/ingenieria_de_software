@@ -46,4 +46,10 @@ public class ProductoServiceImp implements ProductoService {
 		return productorepository.getProductosBusq(nombre_producto);
 	}
 
+	@Override
+	public RespuestaApi updateProducto(Producto producto, int id) {
+		// TODO Auto-generated method stub
+		return productorepository.updateProducto(producto, id);
+	}
+
 }

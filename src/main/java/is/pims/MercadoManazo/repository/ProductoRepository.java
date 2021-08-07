@@ -101,4 +101,17 @@ public class ProductoRepository {
 		msg.setMessage("Producto eliminado exitosamente");
 		return msg;
 	}
+	
+	public RespuestaApi updateProducto(Producto producto, int id) {
+		jdbcTemplate.update("UPDATE producto SET "
+		+ "nombre = '" + producto.getNombre() + "', "
+		+ "descripcion = '" + producto.getDescripcion() + "', "
+		+ "precio = " + producto.getPrecio() + ","
+		+ "inventario = " + producto.getInventario() + ","
+		+ "imagen = '" + producto.getImagen() + "' " 
+		+ "WHERE id_producto = " + id + ";");
+		RespuestaApi msg = new RespuestaApi();
+		msg.setMessage("Producto actualizado exitosamente");
+		return msg;
+	}
 }
