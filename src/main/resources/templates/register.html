@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
     <head>
         <meta charset="UTF-8">
         <title>Registro - MercadoManazo</title>
@@ -17,7 +17,7 @@
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
             </button>
-            <a class="navbar-brand">
+            <a class="navbar-brand"  th:href="@{/}">
             <img style="height: 40px; width: 40px;" th:src="@{/img/min-white.png}"></img>
             <img  style ="width: 100px; height:auto;" th:src="@{/img/Typo-White-Corp.png}"></img>
             </a>
@@ -41,16 +41,32 @@
                     </li>
                 </ul>
                 </li>
-                <li class="nav-item dropdown">
-                <a class="nav-link btn btn-danger dropdown-toggle" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                    Registrate
-                </a>
-                <ul class="dropdown-menu dropdown-menu-lg-end" aria-labelledby="navbarDropdown">
-                    <li><a class="dropdown-item" href="register.html" id="registerSell">Vendedor</a></li>
-                    <li><a class="dropdown-item" href="register.html" id="registerBuy">Comprador</a></li>
-                    <li><hr class="dropdown-divider"></li>
-                    <li><a class="dropdown-item" href="login.html" >Inicia sesión</a></li>
-                </ul>
+                <li class="nav-item dropdown" sec:authorize="isAnonymous()">
+                    <a class="nav-link btn btn-danger dropdown-toggle" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        Registrate
+                    </a>
+                    <ul class="dropdown-menu dropdown-menu-lg-end" aria-labelledby="navbarDropdown">
+                        <li><a class="dropdown-item" th:href="@{/register}" id="registerSell">Vendedor</a></li>
+                        <li><a class="dropdown-item" th:href="@{/register}" id="registerBuy">Comprador</a></li>
+                        <li><hr class="dropdown-divider"></li>
+                        <li><a class="dropdown-item" th:href="@{/login}">Inicia sesión</a></li>
+                    </ul>
+                </li>
+                <li class="nav-item dropdown" sec:authorize="isAuthenticated()">
+                    <a class="nav-link btn btn-danger dropdown-toggle" id="navbarDropdown2" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        <!-- span th:text="${#authentication.getPrincipal().getUsuario().getNombre()}" -->
+                        Usuario
+                    </a>
+                    <ul class="dropdown-menu dropdown-menu-lg-end" aria-labelledby="navbarDropdown2">
+                        <li><a class="dropdown-item" th:href="@{/profile}" id="profile">Perfil</a></li>
+                        <li><hr class="dropdown-divider"></li>
+                        <li>
+                            <a class="dropdown-item" href="javascript: document.logOutForm.submit()" >Cierra Sesión</a>
+                            <form  name="logOutForm" th:action="@{/logout}" method="post" th:hidden="true">
+                                <input hidden type="submit" value="Sign Out"/>
+                            </form>
+                        </li>
+                    </ul>
                 </li>
             </ul>
             </div>
@@ -61,13 +77,13 @@
         <div class ="my-auto container">
             <div class="row row-cols-1 row-cols-lg-2 mx-auto align-items-center">
                 <div class="col mx-auto text-center">
-                        <img class="img-fluid max-width: 80%;" style="height: auto; object-fit: contain" th:src="@{img/Typo-Light-Corp.png}"></img>
+                        <img class="img-fluid max-width: 80%;" style="height: auto; object-fit: contain" th:src="@{/img/Typo-Light-Corp.png}"></img>
                         <h1>¡Únete Ahora!</h1>
                         <h4>Somos la comunidad más grande de compra-venta local en CDMX.</h4>
                     </div>
                     <div class="col my-auto"> 
 
-                        <form method="post" th:action="@{/register/}" th:object="${req}">
+                        <form method="post" th:action="@{/register/}" th:object="${req}" sec:authorize="isAnonymous()">
                             <div class="form-group mb-2">
                                 <label for="name">Ingresa tu Nombre: </label>
                                 <input th:field="*{nombre}" required type="text" class="form-control" id="name" aria-describedby="emailHelp" placeholder="Nombre">
@@ -92,6 +108,7 @@
                                 <button type="submit" class="btn btn-success">Registrate</button>
                             </div>
                         </form>
+                        <h1 sec:authorize="isAuthenticated()">Usted ya inició sesión.</h1>
                     </div>
             </div>
         </div>

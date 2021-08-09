@@ -20,6 +20,8 @@ public class RegistroUsuarioController {
         return "register";
     };
 
+
+
     @PostMapping
     public String registro(SolicitudRegistro req){
         return registroService.registro(req);
