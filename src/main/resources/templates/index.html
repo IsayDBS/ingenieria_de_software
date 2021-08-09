@@ -4,10 +4,9 @@
   <meta charset="UTF-8">
   <title>Mercado Manazo</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Mercado Manazo</title><link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.0.2/css/bootstrap.min.css'>
-<link rel='stylesheet' href='https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css'>
-<link rel="stylesheet" href="/main.css">
-<link rel="shortcut icon" href="../img/favicon.ico" />
+<title>Mercado Manazo</title>
+  <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.0.2/css/bootstrap.min.css'>
+<link rel='stylesheet' href='https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css'><link rel="stylesheet" href="/main.css">
 
 </head>
 <body>
@@ -16,17 +15,20 @@
   <nav class="navbar navbar-expand-lg custom-header navbar-dark sticky-top" id="header">
     <div class="container-fluid">
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
+        <span class="navbar-toggler-icon"></span>
       </button>
-    <a class="navbar-brand">Logo & Typo</a>
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <form class="d-flex ms-auto">
-            <input class="form-control me-2" type="search" placeholder="Busca un producto" aria-label="Search">
-            <button class="btn btn-danger" type="submit"><i class="bi  bi-search"></i></button>
-          </form>
+      <a class="navbar-brand">
+        <img style="height: 40px; width: 40px;" th:src="@{/img/min-white.png}"></img>
+        <img  style ="width: 100px; height:auto;" th:src="@{/img/Typo-White-Corp.png}"></img>
+      </a>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <form class="d-flex ms-auto">
+          <input class="form-control me-2" type="search" placeholder="Busca un producto" aria-label="Search">
+          <button class="btn btn-danger" type="submit"><i class="bi  bi-search"></i></button>
+        </form>
         <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-         <li class="nav-item me-5 dropdown">
-          <a class="nav-link dropdown-toggle" id="categDrop" data-bs-toggle="dropdown" role="button" aria-expanded="false" href="#">Categorías</a>
+          <li class="nav-item me-5 dropdown">
+            <a class="nav-link dropdown-toggle" id="categDrop" data-bs-toggle="dropdown" role="button" aria-expanded="false" href="#">Categorías</a>
             <ul class="dropdown-menu" aria-labelledby="categDrop">
               <li>
                 <a class="dropdown-item">Eléctronica</a>
@@ -37,26 +39,26 @@
               <li>
                 <a class="dropdown-item">Otros</a>
               </li>
-          </ul>
-        </li>
-        <li class="nav-item dropdown">
-          <a class="nav-link btn btn-danger dropdown-toggle" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-            Registrate
-          </a>
-          <ul class="dropdown-menu dropdown-menu-lg-end" aria-labelledby="navbarDropdown">
-            <li><a class="dropdown-item" href="#">Vendedor</a></li>
-            <li><a class="dropdown-item" href="#">Comprador</a></li>
-            <li><hr class="dropdown-divider"></li>
-            <li><a class="dropdown-item" href="#">Inicia sesión</a></li>
-          </ul>
-        </li>
-       </ul>
+            </ul>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link btn btn-danger dropdown-toggle" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              Registrate
+            </a>
+            <ul class="dropdown-menu dropdown-menu-lg-end" aria-labelledby="navbarDropdown">
+              <li><a class="dropdown-item" th:href="@{/register}" id="registerSell">Vendedor</a></li>
+              <li><a class="dropdown-item" th:href="@{/register}" id="registerBuy">Comprador</a></li>
+              <li><hr class="dropdown-divider"></li>
+              <li><a class="dropdown-item" th:href="@{/login}">Inicia sesión</a></li>
+            </ul>
+          </li>
+        </ul>
       </div>
     </div>
   </nav>
 </header>
-  <div class="mx-auto mt-3 mb-3" id="react">
-    
+  <div class="mx-auto mt-3 mb-3" id="main-body">
+    <h1>INDEX</h1>
   </div>
   <footer class="bg-dark text-center text-lg-start text-muted fixed-bottom">
     <p class="ms-2">PIMS Dev 2021</p>

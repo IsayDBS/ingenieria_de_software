@@ -1,5 +1,8 @@
 package is.pims.MercadoManazo.dto;
 
+import lombok.AllArgsConstructor;
+
+@AllArgsConstructor
 public class Email {
 	
 	private String email;

@@ -8,6 +8,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
+import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 
 import is.pims.MercadoManazo.dto.Email;
@@ -22,6 +23,7 @@ public class EmailServiceImp implements EmailService {
 	private JavaMailSender sender;
 
 	@Override
+	@Async
 	public boolean sendEmail(Email emailBody)  {
 		LOGGER.info("EmailBody: {}", emailBody.toString());
 		return sendEmailTool(emailBody.getContent(),emailBody.getEmail(), emailBody.getSubject());
@@ -41,6 +43,7 @@ public class EmailServiceImp implements EmailService {
 			LOGGER.info("Mail enviado!");
 		} catch (MessagingException e) {
 			LOGGER.error("Hubo un error al enviar el mail: {}", e);
+			throw new IllegalStateException("Hubo un error al enviar el mail");
 		}
 		return send;
 	}
