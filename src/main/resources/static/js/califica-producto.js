@@ -1,10 +1,10 @@
 
 
-async function postOpinion(){ //Va a esperar una respuesta (async)
+async function postOpinion(id_producto,id_comprador){ //Va a esperar una respuesta (async)
     let url = "http://localhost:8080/opinion"
     if (validateRating())
     {
-        opinionInfo = getOpinionInfo()
+        opinionInfo = getOpinionInfo(id_producto,id_comprador)
         let opcionesRequest = {
         method: 'POST',
         headers: {
@@ -24,7 +24,7 @@ async function postOpinion(){ //Va a esperar una respuesta (async)
   
 }
 
-async function loadProductInfo(nombre_producto, id_producto){
+async function loadProductInfo(nombre_producto,id_producto){
     let url = `http://localhost:8080/producto/${nombre_producto}/${id_producto}`
     fetch(url)
     .then(response => response.json())
@@ -32,11 +32,8 @@ async function loadProductInfo(nombre_producto, id_producto){
 }
 
 function displayProductInfo(data){
-    product_name = data.nombre
-    document.getElementById("nombre-producto").innerHTML = product_name
-    product_desc = data.descripcion
-    document.getElementById("descripcion-producto").innerHTML = product_desc
-    product_price = data.precio
+    document.getElementById("nombre-producto").innerHTML = data.nombre
+    document.getElementById("descripcion-producto").innerHTML = data.descripcion
 }
 
 
@@ -60,8 +57,10 @@ function validateRating(){
 }
 
 
-function getOpinionInfo(){
+function getOpinionInfo(id_prod,id_compr){
     let opinion= {
+        id_producto: id_prod,
+        id_comprador: id_compr,
         calificacion :  getStarRating("rate").value,
         comentario : document.getElementById("review").value
     }

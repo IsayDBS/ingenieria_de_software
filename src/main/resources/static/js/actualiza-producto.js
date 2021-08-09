@@ -32,24 +32,20 @@ function enablePrice() {
     document.getElementById("precio-producto").disabled = false;
 }
 
-async function loadProductInfo(nombre_producto, id_producto){
+async function loadProductInfo(nombre_producto,id_producto){
     let url = `http://localhost:8080/producto/${nombre_producto}/${id_producto}`
     fetch(url)
     .then(response => response.json())
     .then(data => {displayProductInfo(data)})
+  .catch(error => console.log('error', error));
 }
 
 function displayProductInfo(data){
-    product_name = data.nombre
-    document.getElementById("nombre-producto").value = product_name
-    product_desc = data.descripcion
-    document.getElementById("descripcion-producto").value = product_desc
-    product_price = data.precio
-    document.getElementById("precio-producto").value = product_price
-    product_stock = data.inventario
-    document.getElementById("inventario").value = product_stock
-    product_img = data.imagen
-    document.getElementById("imagen-producto").src = product_img
+    document.getElementById("nombre-producto").value = data.nombre
+    document.getElementById("descripcion-producto").value = data.descripcion
+    document.getElementById("precio-producto").value = data.precio
+    document.getElementById("inventario").value = data.inventario
+    document.getElementById("imagen-producto").src = data.imagen
 }
 
 
