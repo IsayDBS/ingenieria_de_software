@@ -59,14 +59,13 @@ public class OpinionRepository {
 	}
 	
 	public RespuestaApi createOpinion(Opinion opinion) {
-		jdbcTemplate.update("INSERT INTO opinion (id_opinion, id_producto, id_comprador, calificacion, comentario) VALUES("
-				+ "" + opinion.getId_opinion() + "," 
+		jdbcTemplate.update("INSERT INTO opinion (id_producto, id_comprador, calificacion, comentario) VALUES(" 
 				+ "" + opinion.getId_producto() + "," 
 				+ "" + opinion.getId_comprador() + ","
 				+ "" + opinion.getCalificacion() + "," 
 				+ "'" + opinion.getComentario() + "');");
 		RespuestaApi msg = new RespuestaApi();
-		msg.setMessage("Producto agregado exitosamente");
+		msg.setMessage("Opinion agregado exitosamente");
 		return msg;
 	}
 }
