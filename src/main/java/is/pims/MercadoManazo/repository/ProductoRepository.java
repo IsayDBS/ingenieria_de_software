@@ -63,8 +63,7 @@ public class ProductoRepository {
 		return productos;
 	}
 	
-	/*
-	public Producto getProducto(int id) {
+	public Producto getProducto(int id, String nombre) {
 		Producto producto = new Producto();
 		producto = jdbcTemplate.queryForObject("SELECT * FROM producto WHERE id_producto = " + id + ";", new RowMapper<Producto>() {
 			
@@ -84,7 +83,6 @@ public class ProductoRepository {
 		});
 		return producto;
 	}
-	*/
 	
 	public RespuestaApi createProducto(Producto producto) {
 		jdbcTemplate.update("INSERT INTO producto (id_vendedor, nombre, descripcion, precio, inventario, imagen) VALUES("
@@ -103,6 +101,19 @@ public class ProductoRepository {
 		jdbcTemplate.update("DELETE FROM producto WHERE id_producto = " + id + ";");
 		RespuestaApi msg = new RespuestaApi();
 		msg.setMessage("Producto eliminado exitosamente");
+		return msg;
+	}
+	
+	public RespuestaApi updateProducto(Producto producto, int id) {
+		jdbcTemplate.update("UPDATE producto SET "
+		+ "nombre = '" + producto.getNombre() + "', "
+		+ "descripcion = '" + producto.getDescripcion() + "', "
+		+ "precio = " + producto.getPrecio() + ","
+		+ "inventario = " + producto.getInventario() + ","
+		+ "imagen = '" + producto.getImagen() + "' " 
+		+ "WHERE id_producto = " + id + ";");
+		RespuestaApi msg = new RespuestaApi();
+		msg.setMessage("Producto actualizado exitosamente");
 		return msg;
 	}
 }
