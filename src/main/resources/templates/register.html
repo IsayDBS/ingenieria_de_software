@@ -101,7 +101,7 @@
                                 <input th:field="*{telefono}"type="text" class="form-control" id="exampleInputPhone" aria-describedby="emailHelp" placeholder="10 dígitos">
                             </div>
                             <div class="form-check mt-3">
-                                <input th:checked="*{role}" type="checkbox" class="form-check-input" id="exampleCheck1">
+                                <input th:field="${req.role}"  type="checkbox" class="form-check-input" id="exampleCheck1">
                                 <label class="form-check-label" for="exampleCheck1">Soy vendedor</label>
                             </div>
                             <div class="mt-3 mx-3 d-flex justify-content-end">

@@ -18,5 +18,8 @@ public class MainController {
     @GetMapping("/register/confirm")
     public String muestraLog(){return "login";}
 
+    @GetMapping("/dashboard")
+    public String muestraDashboard(){return "dashboard";}
+
 
 }
