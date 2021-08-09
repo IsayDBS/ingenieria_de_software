@@ -2,14 +2,14 @@
 <html xmlns:th="https://www.thymeleaf.org">
 <head lang="es">
   <meta charset="UTF-8">
-  <title>Mercado Manazo xd</title>
+  <title>Califica producto - Mercado Manazo </title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Mercado Manazo</title> 
 <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.0.2/css/bootstrap.min.css'>
 <link rel='stylesheet' href='https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css'/>
 <link rel="stylesheet" href="../static/main.css"/>
-<link rel="shortcut icon" href="../img/favicon.ico" />
 <link  rel="stylesheet" href="../static/rating_product.css"/>
+<link rel="icon" href="../img/Logo-Cir-Light.png" />
 </head>
 <body onload="loadProductInfo(nombre_producto, id_producto)">
   <style>
@@ -25,10 +25,10 @@
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
       </button>
-    <a class="navbar-brand">
-      <img src="../images/logo-header.png" alt="logo" style="width: 80px;height:80px;">
-      <img src="../images/brand-header.png" alt="marca" style="width: 180px;height:80px;" >
-    </a>
+      <a class="navbar-brand">
+        <img style="height: 40px; width: 40px;" src="../img/min-white.png"></img>
+        <img  style ="width: 100px; height:auto;"src="../img/Typo-White-Corp.png"></img>
+        </a>
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <form class="d-flex ms-auto">
             <input class="form-control me-2" type="search" placeholder="Busca un producto" aria-label="Search">
@@ -54,10 +54,10 @@
             Registrate
           </a>
           <ul class="dropdown-menu dropdown-menu-lg-end" aria-labelledby="navbarDropdown">
-            <li><a class="dropdown-item" href="#">Vendedor</a></li>
-            <li><a class="dropdown-item" href="#">Comprador</a></li>
+            <li><a class="dropdown-item" href="register.html" id="registerSell">Vendedor</a></li>
+            <li><a class="dropdown-item" href="register.html" id="registerBuy">Comprador</a></li>
             <li><hr class="dropdown-divider"></li>
-            <li><a class="dropdown-item" href="#">Inicia sesión</a></li>
+            <li><a class="dropdown-item" href="login.html" >Inicia sesión</a></li>
           </ul>
         </li>
        </ul>
