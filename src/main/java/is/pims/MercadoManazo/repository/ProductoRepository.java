@@ -31,7 +31,8 @@ public class ProductoRepository {
 				producto.setNombre(rs.getString(3));
 				producto.setDescripcion(rs.getString(4));
 				producto.setPrecio(rs.getFloat(5));
-				producto.setImagen(rs.getString(6));
+				producto.setInventario(rs.getInt(6));
+				producto.setImagen(rs.getString(7));
 				
 				return producto;
 			}
@@ -52,7 +53,8 @@ public class ProductoRepository {
 				producto.setNombre(rs.getString(3));
 				producto.setDescripcion(rs.getString(4));
 				producto.setPrecio(rs.getFloat(5));
-				producto.setImagen(rs.getString(6));
+				producto.setInventario(rs.getInt(6));
+				producto.setImagen(rs.getString(7));
 				
 				return producto;
 			}
