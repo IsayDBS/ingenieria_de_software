@@ -24,16 +24,16 @@ public class UsuarioService implements UserDetailsService {
                 .orElseThrow(()-> new UsernameNotFoundException(String.format(USER_NOT_FOUND,correo)));
     }
 
-    public String registraUsuario(Usuario usuario, RolUsuario rolUsuario){
+    public String registraUsuario(Usuario usuario){
         boolean coincidence = usuarioRepository.findByCorreo(usuario.getCorreo()).isPresent();
-        if(coincidence && usuario.getRolUsuario() == rolUsuario)
-            throw new IllegalStateException("El correo ya está registrado para el rol especificado");
+        if(coincidence)
+            throw new IllegalStateException("El correo ya está registrado.");
 
         String encoded = bCryptPasswordEncoder.encode(usuario.getPassword());
 
         usuario.setContrasena(encoded);
         usuario.setEnabled(true);
         usuarioRepository.save(usuario);
-        return "redirect:/login/";
+        return "redirect:/register/confirm";
     }
 }

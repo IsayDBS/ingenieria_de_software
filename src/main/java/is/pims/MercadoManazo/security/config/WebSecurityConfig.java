@@ -1,5 +1,6 @@
 package is.pims.MercadoManazo.security.config;
 
+import is.pims.MercadoManazo.security.AuthHandler;
 import is.pims.MercadoManazo.security.PasswordEncoder;
 import is.pims.MercadoManazo.service.UsuarioService;
 import lombok.AllArgsConstructor;
@@ -12,6 +13,7 @@ import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 
 @Configuration
 @AllArgsConstructor
@@ -32,9 +34,12 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .authenticated().and()
                 .formLogin()
                     .loginPage("/login")
+                    .usernameParameter("email")
+                    .successHandler(authHandler())
                     .permitAll()
                     .and()
                 .logout()
+                    .logoutSuccessUrl("/login?logout")
                     .permitAll();
     }
 
@@ -42,7 +47,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     public void configure(WebSecurity web) throws Exception {
         web
                 .ignoring()
-                .antMatchers("/resources/**", "/static/**", "/css/**", "/js/**", "/img/**");
+                .antMatchers("/resources/**", "/static/**", "/css/**", "/js/**", "/img/**");;
     }
 
     @Override
@@ -50,6 +55,10 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         auth.authenticationProvider(daoAuthenticationProvider());
     }
 
+    @Bean
+    public AuthenticationSuccessHandler authHandler() {
+        return new AuthHandler();
+    }
 
 
     @Bean

@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="en" >
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
     <head>
         <meta charset="UTF-8">
         <title>Inicia Sesión - MercadoManazo</title>
@@ -16,7 +17,7 @@
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
-                <a class="navbar-brand">
+                <a class="navbar-brand" th:href="@{/}">
                     <img style="height: 40px; width: 40px;" th:src="@{/img/min-white.png}"></img>
                     <img  style ="width: 100px; height:auto;" th:src="@{/img/Typo-White-Corp.png}"></img>
                 </a>
@@ -40,18 +41,35 @@
                                 </li>
                             </ul>
                         </li>
-                        <li class="nav-item dropdown">
+                        <li class="nav-item dropdown" sec:authorize="isAnonymous()">
                             <a class="nav-link btn btn-danger dropdown-toggle" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                 Registrate
                             </a>
                             <ul class="dropdown-menu dropdown-menu-lg-end" aria-labelledby="navbarDropdown">
-                                <li><a class="dropdown-item" href="register.html" id="registerSell">Vendedor</a></li>
-                                <li><a class="dropdown-item" href="register.html" id="registerBuy">Comprador</a></li>
+                                <li><a class="dropdown-item" th:href="@{/register}" id="registerSell">Vendedor</a></li>
+                                <li><a class="dropdown-item" th:href="@{/register}" id="registerBuy">Comprador</a></li>
                                 <li><hr class="dropdown-divider"></li>
-                                <li><a class="dropdown-item" href="login.html" >Inicia sesión</a></li>
+                                <li><a class="dropdown-item" th:href="@{/login}" >Inicia sesión</a></li>
+                            </ul>
+                        </li>
+                        <li class="nav-item dropdown" sec:authorize="isAuthenticated()">
+                            <a class="nav-link btn btn-danger dropdown-toggle" id="navbarDropdown2" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            <!--span th:text="${#authentication.getPrincipal().getUsuario().getNombre()}"-->
+                                Usuario
+                            </a>
+                            <ul class="dropdown-menu dropdown-menu-lg-end" aria-labelledby="navbarDropdown2">
+                                <li><a class="dropdown-item" th:href="@{/profile}" id="profile">Perfil</a></li>
+                                <li><hr class="dropdown-divider"></li>
+                                <li>
+                                    <a class="dropdown-item" href="javascript: document.logOutForm.submit()" >Cierra Sesión</a>
+                                    <form  name="logOutForm" th:action="@{/logout}" method="post" th:hidden="true">
+                                        <input hidden type="submit" value="Sign Out"/>
+                                    </form>
+                                </li>
                             </ul>
                         </li>
                     </ul>
+
                 </div>
             </div>
         </nav>
@@ -61,28 +79,27 @@
         <div class="container my-auto">
             <div class="row row-cols-1 row-cols-lg-2 mx-auto my-auto">
                 <div class="col mx-auto text-center">
-                    <img class="img-fluid max-width: 80%;" style="height: auto; object-fit: contain" src="img/Logo-Main-Dark.png"></img>
+                    <img class="img-fluid max-width: 80%;" style="height: auto; object-fit: contain" th:src="@{/img/Logo-Main-Dark.png}"></img>
                 </div>
                 <div class="col my-auto"> 
-                    <form>
+                    <form th:action="@{/login}" method="post" sec:authorize="isAnonymous()">
                         <div class="form-group mb-2">
-                    <label for="exampleInputEmail1">Correo Electrónico:</label>
-                    <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="ejemplo@ejemplo.com">
-                    <small id="emailHelp" class="form-text text-muted">Tu correo no será compartido.</small>
+                            <div th:if="${param.error}" class="alert alert-danger">Usuario o contraseña inválidos.</div>
+                            <div th:if="${param.logout}" class="alert alert-success"> Ha cerrado sesión.</div>
+                            <label for="username">Correo Electrónico:</label>
+                            <input type="email" class="form-control" id="username" name="email" aria-describedby="emailHelp" placeholder="ejemplo@ejemplo.com" required>
+                            <small id="emailHelp" class="form-text text-muted">Tu correo no será compartido.</small>
                         </div>
                         <div class="form-group">
-                    <label for="exampleInputPassword1">Ingresa tu contraseña:</label>
-                    <input type="password" class="form-control" id="exampleInputPassword1" placeholder="contraseña">
-                        </div>
-                        <div class="form-check mt-3">
-                    <input type="checkbox" class="form-check-input" id="exampleCheck1">
-                    <label class="form-check-label" for="exampleCheck1">Soy vendedor</label>
+                            <label for="password">Ingresa tu contraseña:</label>
+                            <input type="password" class="form-control" id="password" name="password" placeholder="contraseña" required>
                         </div>
                         <div class="mt-3 mx-3 d-flex justify-content-evenly">
-                            <a class="btn btn-success" href="./register.html">Regístrate</a>
+                            <a class="btn btn-success" th:href="@{/register}">Regístrate</a>
                             <button type="submit" class="btn btn-primary">Inicia Sesión</button>
                         </div>
                     </form>
+                    <h1 sec:authorize="isAuthenticated()">Usted ya inició sesión.</h1>
                 </div>
             </div>
         </div>

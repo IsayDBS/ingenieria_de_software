@@ -28,6 +28,6 @@ public class RegistroService {
         Usuario usr = new Usuario(req.getNombre(), req.getApellido(), req.getCorreo(), req.getTelefono(), r);
         String pwd = "Tu contraseña en MercadoManazo es: <b>" + usr.getPassword() + "</b>";
         emailService.sendEmail(new Email(usr.getCorreo(),pwd,"Contraseña Mercado Manazo"));
-        return usuarioService.registraUsuario(usr, r);
+        return usuarioService.registraUsuario(usr);
     }
 }

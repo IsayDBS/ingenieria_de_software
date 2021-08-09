@@ -7,10 +7,16 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-@AllArgsConstructor
-@RequestMapping(path="/")
 public class MainController {
 
-    @GetMapping
+    @GetMapping("/")
     public String index (Model model){return "index";}
+
+    @GetMapping("/login")
+    public String viewLoginPage(){return "login";}
+
+    @GetMapping("/register/confirm")
+    public String muestraLog(){return "login";}
+
+
 }
