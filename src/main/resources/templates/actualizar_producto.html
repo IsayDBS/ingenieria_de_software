@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org">
+<head lang="es">
+  <meta charset="UTF-8">
+  <title>Mercado Manazo xd</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Mercado Manazo</title> <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.0.2/css/bootstrap.min.css'>
+<link rel='stylesheet' href='https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css'>
+<link rel="stylesheet" href="../static/main.css">
+<link rel="shortcut icon" href="../images/favicon.ico" />
+<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+<link rel="stylesheet" href="../static/updating_product.css">
+</head>
+<body onload="loadProductInfo(nombre_producto, id_producto)">
+  <style>
+    h1 {padding-left:15px; padding-top: 15px;}
+  </style>
+<!-- partial:index.partial.html -->
+<header>
+  <nav class="navbar navbar-expand-lg custom-header navbar-dark sticky-top" id="header">
+    <div class="container-fluid">
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+      </button>
+    <a class="navbar-brand">
+      <img src="../images/logo-header.png" alt="logo" style="width: 80px;height:80px;">
+      <img src="../images/brand-header.png" alt="marca" style="width: 180px;height:80px;" >
+    </a>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <form class="d-flex ms-auto">
+            <input class="form-control me-2" type="search" placeholder="Busca un producto" aria-label="Search">
+            <button class="btn btn-danger" type="submit"><i class="bi  bi-search"></i></button>
+          </form>
+        <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+         <li class="nav-item me-5 dropdown">
+          <a class="nav-link dropdown-toggle" id="categDrop" data-bs-toggle="dropdown" role="button" aria-expanded="false" href="#">Categorías</a>
+            <ul class="dropdown-menu" aria-labelledby="categDrop">
+              <li>
+                <a class="dropdown-item">Eléctronica</a>
+              </li>
+              <li>
+                <a class="dropdown-item">Ropa, Calzado y Accesorios</a>
+              </li>
+              <li>
+                <a class="dropdown-item">Otros</a>
+              </li>
+          </ul>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link btn btn-danger dropdown-toggle" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Registrate
+          </a>
+          <ul class="dropdown-menu dropdown-menu-lg-end" aria-labelledby="navbarDropdown">
+            <li><a class="dropdown-item" href="#">Vendedor</a></li>
+            <li><a class="dropdown-item" href="#">Comprador</a></li>
+            <li><hr class="dropdown-divider"></li>
+            <li><a class="dropdown-item" href="#">Inicia sesión</a></li>
+          </ul>
+        </li>
+       </ul>
+      </div>
+    </div>
+  </nav>
+</header>
+  <div class="mx-auto mt-3 mb-3" id="react">    
+  </div>
+
+<div class = "updating-product-container">
+  <h1> Actualizar producto</h1>
+  
+
+  <div class="updating-product-img">
+    <figure  >
+      <img id="imagen-producto" alt="[foto]" style="width:450px;height:400px; padding-left: 30px;">
+    </figure> <br> 
+    <h4 style="float: left; padding-left: 90px;"> Modificar imagen:</h4>
+    <div class="image-upload">
+      <label for="file-input" id="img-selection" >
+        <span class="material-icons">image</span>
+      </label>
+    
+      <input id="file-input" type="file" />
+    </div>
+  </div>
+
+    <div class="updating-product-data">
+        <div style = "float: left; width: 30%;"> 
+            <h4>Modificar nombre: </h4> <br> <br>
+            <h4>Modificar descripción: </h4> <br> <br> <br> <br> 
+            <h4>Modificar precio:</h4> <br> <br> 
+            <h4>Modificar inventario: </h4>
+        </div>
+        <div style="float: right; width: 70%;">
+            <!--<form> -->
+                <input type="text" id="nombre-producto" placeholder="[Nombre actual]" disabled>
+              <button  class="updating-buttons" onclick="enableTitle()"> 
+                  <span class="material-icons">edit</span>
+              </button> <br> <br> <br>
+              <textarea placeholder="[Descripción actual]" id="descripcion-producto" cols="38" rows="3" disabled></textarea>
+              <button class="updating-buttons" onclick="enableDesc()" > 
+                  <span class="material-icons">edit</span>
+              </button>
+              <br> <br> <br> 
+              <input type="text" id="precio-producto"  placeholder="[Precio actual]" disabled>
+              <button class="updating-buttons" onclick="enablePrice()">  
+                  <span class="material-icons">edit</span>
+              </button> <br> <br> 
+              <input type="number" min="0" id="inventario" value="0"> <br> <br> <br> 
+              <input type="submit" value="Actualizar" onclick="updateProduct(id_producto)">
+            <!--</form>   -->
+        </div>
+    </div>
+
+<!-- Modal -->
+<div class="modal fade" id="modalPrecio" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Oops</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        Por favor otorgue un valor válido para el precio.
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+  
+</div>
+
+  <footer class="bg-dark text-center text-lg-start text-muted fixed-bottom">
+    <p class="ms-2">PIMS Dev 2021</p>
+  </footer>
+<!-- partial -->
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.0.2/js/bootstrap.min.js'></script>
+  <script src="../static/actualiza-producto.js"></script>
+
+</body>
+</html>
