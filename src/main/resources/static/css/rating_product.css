@@ -1,0 +1,189 @@
+.visually-hidden {   /* Contain text within 1px box */
+	height: 1px; 
+	overflow: hidden;
+	width: 1px;  /* Keep the layout */  
+	position: absolute;  /* Remove any visible trace (e.g. background color) */
+	clip: rect(1px 1px 1px 1px); /* IE6, IE7 */
+	clip: rect(1px, 1px, 1px, 1px);
+	clip-path: inset(50%); /* browsers in the future */  /* Prevent the screen reader to skip spaces between words */
+	white-space: nowrap;}
+
+.rating-container{
+	background-color: #FF8181;
+	border: 2px black;
+  margin: 20px;
+	height: 690px;
+}
+
+.rating-item{
+	width: 50%;
+	background-color: #FF8181;
+	float: left;
+}
+
+
+.rating-content{
+	position: relative;
+	top:auto; 	
+	width: 50%;
+	background-color: #FF8181;
+	float: right;
+}
+
+.rate {
+	position: relative;
+	float: left;
+	height: 30px;
+	padding-left:250px;
+}
+.rate:not(:checked) > input {
+	position:absolute;
+	top:-9999px;
+}
+.rate:not(:checked) > label {
+	float:right;
+	width:1em;
+	overflow:hidden;
+	white-space:nowrap;
+	cursor:pointer;
+	font-size:30px;
+	color:#ccc;
+}
+.rate:not(:checked) > label:before {
+	content: '★ ';
+}
+.rate > input:checked ~ label {
+	color: #ffd744;    
+}
+.rate:not(:checked) > label:hover,
+.rate:not(:checked) > label:hover ~ label {
+	color: #dbaf11;  
+}
+.rate > input:checked + label:hover,
+.rate > input:checked + label:hover ~ label,
+.rate > input:checked ~ label:hover,
+.rate > input:checked ~ label:hover ~ label,
+.rate > label:hover ~ input:checked ~ label {
+	color: #caa933;
+}
+
+#review{
+	resize: none;
+	position: relative;
+	float: right;
+	border-radius: 10px;
+	right: 10%;
+	padding: 10px;
+  margin: 2px 0;
+}
+
+#review:focus{
+	resize: none;
+	position: relative;
+	float: right;
+	border-radius: 10px;
+	right: 10%;
+  padding:  10px;
+  margin: 2px 0;
+	border: 2px solid #555;
+}
+
+input[type=submit] {
+	position: relative;
+	float: right;
+  background-color: #dc3545;
+  color: white;
+  padding: 12px 20px;
+	right: 10%;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+input[type=button] {
+	border: none;
+  border-radius: 5px;
+	position: relative;
+	float: right;
+  background-color: #dc3545;
+  color: white;
+  padding: 12px 20px;
+	right: 5%; 
+  cursor: pointer;
+}
+
+input[type=number] {
+	border: 4px #111;
+  border-radius: 5px;
+	position: relative;
+	float: left;
+  background-color: #dc3545;
+  color: white;
+  padding: 9px;
+	height: 45px;
+	width: 20%;
+}
+
+.updating-product-container{
+	background-color: #FF8181;
+	border: 2px black;
+  margin: 20px;
+	height: 620px;
+}
+
+.updating-product-img{
+	width: 40%;
+	background-color: #FF8181;
+	float: left;
+}
+
+.updating-product-data{
+	width: 60%;
+	background-color: #FF8181;
+	float: right;
+}
+
+#descripcion{
+	resize: none;
+	border-radius: 10px;
+	padding: 6px;
+  margin: 2px 0;
+}
+
+#descripcion:focus{
+	resize: none;
+	border-radius: 10px;
+  padding:  6px;
+  margin: 2px 0;
+	border: 2px solid #555;
+}
+
+#nombre-producto{
+	position: relative;
+	border-radius: 10px;
+	width: 75%;
+	padding: 6px;
+  margin: 2px 0;
+}
+#nombre-producto:focus{
+	position: relative;
+	border-radius: 10px;
+	width: 75%;
+	padding: 6px;
+  margin: 2px 0;
+}
+
+#precio-producto{
+	position: relative;
+	border-radius: 10px;
+	width: 50%;
+	padding: 6px;
+  margin: 2px 0;
+}
+#precio-producto:focus{
+	position: relative;
+	border-radius: 10px;
+	width: 50%;
+	padding: 6px;
+  margin: 2px 0;
+}

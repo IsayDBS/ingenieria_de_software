@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org">
+<head lang="es">
+  <meta charset="UTF-8">
+  <title>Califica producto - Mercado Manazo </title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Mercado Manazo</title> 
+<link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.0.2/css/bootstrap.min.css'>
+<link rel='stylesheet' href='https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css'/>
+<link rel="stylesheet" href="../static/css/main.css"/>
+<link  rel="stylesheet" href="../static/css/rating_product.css"/>
+<link rel="icon" href="../img/Logo-Cir-Light.png" />
+</head>
+<body onload="loadProductInfo(nombre_producto,id_producto)">
+  <style>
+    h1 {padding-left:15px; padding-top: 15px;}
+    h2 {padding-top: 25px; text-align: center;}
+    h3 {padding-top: 25px; text-align: center;}
+    p {padding-left:25px;}
+  </style>
+<!-- partial:index.partial.html -->
+<header>
+  <nav class="navbar navbar-expand-lg custom-header navbar-dark sticky-top" id="header">
+    <div class="container-fluid">
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+      </button>
+      <a class="navbar-brand">
+        <img style="height: 40px; width: 40px;" src="../img/min-white.png"></img>
+        <img  style ="width: 100px; height:auto;"src="../img/Typo-White-Corp.png"></img>
+        </a>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <form class="d-flex ms-auto">
+            <input class="form-control me-2" type="search" placeholder="Busca un producto" aria-label="Search">
+            <button class="btn btn-danger" type="submit"><i class="bi  bi-search"></i></button>
+          </form>
+        <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+         <li class="nav-item me-5 dropdown">
+          <a class="nav-link dropdown-toggle" id="categDrop" data-bs-toggle="dropdown" role="button" aria-expanded="false" href="#">Categorías</a>
+            <ul class="dropdown-menu" aria-labelledby="categDrop">
+              <li>
+                <a class="dropdown-item">Eléctronica</a>
+              </li>
+              <li>
+                <a class="dropdown-item">Ropa, Calzado y Accesorios</a>
+              </li>
+              <li>
+                <a class="dropdown-item">Otros</a>
+              </li>
+          </ul>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link btn btn-danger dropdown-toggle" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Registrate
+          </a>
+          <ul class="dropdown-menu dropdown-menu-lg-end" aria-labelledby="navbarDropdown">
+            <li><a class="dropdown-item" href="register.html" id="registerSell">Vendedor</a></li>
+            <li><a class="dropdown-item" href="register.html" id="registerBuy">Comprador</a></li>
+            <li><hr class="dropdown-divider"></li>
+            <li><a class="dropdown-item" href="login.html" >Inicia sesión</a></li>
+          </ul>
+        </li>
+       </ul>
+      </div>
+    </div>
+  </nav>
+</header>
+  <div class="mx-auto mt-3 mb-3" id="react">    
+  </div>
+
+<div class = "rating-container">
+  <h1> Calificar producto</h1>
+  
+
+  <div class="rating-item">
+    <h2 id="nombre-producto"></h2>
+    <p id="descripcion-producto"> </p>
+    <figure>
+      <img src="../images/subir_imagen.png" alt="[foto]" style="width:450px;height:400px; padding-left: 30px;">
+    </figure>
+  </div>
+
+  <div class="rating-content">
+    <h2>Califica este producto: (obligatorio)</h2>
+    <form action="#" id="star_rating">
+      <div class="rate">
+        <input type="radio" id="star5" name="rate" value="5" required />
+        <label for="star5" title="Excelente">5 stars</label>
+        <input type="radio" id="star4" name="rate" value="4" />
+        <label for="star4" title="Bueno">4 stars</label>
+        <input type="radio" id="star3" name="rate" value="3" />
+        <label for="star3" title="Regular">3 stars</label>
+        <input type="radio" id="star2" name="rate" value="2" />
+        <label for="star2" title="Malo">2 stars</label>
+        <input type="radio" id="star1" name="rate" value="1" />
+        <label for="star1" title="Muy malo">1 star</label>
+        <input type="radio" id="star0" name="rate" value="0"  class="visually-hidden" checked>
+      </div> <br> 
+      <h2>Deja una reseña:</h2>
+        <textarea placeholder="Cuéntanos más (opcional)" id="review" cols="48" rows="6" resize="none"></textarea><br><br><br><br><br><br><br><br><br>
+      <input type="submit" value="Calificar" onclick="postOpinion(id_producto,id_comprador)">
+    </form>
+  </div>  
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="modalCalificacion" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Oops</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        Por favor otorgue una calificación al producto.
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+  <footer class="bg-dark text-center text-lg-start text-muted fixed-bottom">
+    <p class="ms-2">PIMS Dev 2021</p>
+  </footer>
+<!-- partial -->
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.0.2/js/bootstrap.min.js'></script>
+  <script src="../static/js/califica-producto.js"></script>
+</body>
+</html>
