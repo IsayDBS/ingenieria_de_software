@@ -1,13 +1,14 @@
 body{
 	background: #EEEEEE;
+    min-height: 100vh;
 }
 .custom-header{
 	background: #FF8181;
 }
 
-.navbar-brand{
-	color: white;
-	padding: 20px;
+
+.flex-fill{
+    flex: 1 1 auto;
 }
 
 .dropdown-menu ul {
@@ -42,4 +43,8 @@ body{
   left: 500px;
   top: 25px;
   font-size: 300%;
+}
+
+#main-body{
+    background: white;
 }

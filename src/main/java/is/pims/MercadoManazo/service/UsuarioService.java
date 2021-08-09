@@ -32,11 +32,8 @@ public class UsuarioService implements UserDetailsService {
         String encoded = bCryptPasswordEncoder.encode(usuario.getPassword());
 
         usuario.setContrasena(encoded);
-
+        usuario.setEnabled(true);
         usuarioRepository.save(usuario);
-
-        //TODO: Enviar contraseña generada.
-
-        return "good";
+        return "redirect:/login/";
     }
 }

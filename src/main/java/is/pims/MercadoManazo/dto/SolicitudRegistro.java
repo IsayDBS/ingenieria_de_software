@@ -3,14 +3,14 @@ package is.pims.MercadoManazo.dto;
 import lombok.*;
 
 @Getter
-@AllArgsConstructor
+@Setter
 @EqualsAndHashCode
 @ToString
 public class SolicitudRegistro {
 
-    private final String nombre;
-    private final String apellido;
-    private final String contrasena;
-    private final String correo;
-    private final String telefono;
+    private String nombre;
+    private String apellido;
+    private String correo;
+    private String telefono;
+    private boolean role;
 }
