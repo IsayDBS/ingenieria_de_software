@@ -27,14 +27,4 @@ public class OpinionController {
 	public ResponseEntity<Object> getOpiniones(){
 		return new ResponseEntity<>(opinionservice.getOpiniones(),HttpStatus.OK);
 	}
-	
-	@GetMapping("/{id_opinion}")
-	public ResponseEntity<Object> getOpiniones(@PathVariable("id_opinion") int id_opinion){
-		return new ResponseEntity<>(opinionservice.getOpiniones(id_opinion), HttpStatus.OK);
-	}
-	
-	@PostMapping
-	public ResponseEntity<Object> createOpinion(@RequestBody Opinion opinion){
-		return new ResponseEntity<>(opinionservice.createOpinion(opinion), HttpStatus.OK);
-	}
 }

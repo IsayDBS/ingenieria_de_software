@@ -4,14 +4,13 @@ import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.springframework.lang.Nullable;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.*;
-import java.util.Collection;
-import java.util.Collections;
-import java.util.Random;
+import java.util.*;
 
 @Entity
 @Getter
@@ -39,6 +38,10 @@ public class Usuario implements UserDetails {
     private String telefono;
     @Enumerated(EnumType.STRING)
     private RolUsuario rolUsuario;
+    @OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private Set<Producto> productos;
+    @OneToMany(mappedBy = "usuario" ,cascade = CascadeType.ALL)
+    private Set<Compra> compras;
     private Boolean locked = false;
     private Boolean enabled = false;
 
@@ -49,6 +52,13 @@ public class Usuario implements UserDetails {
         this.contrasena = generaContrasena(8);
         this.telefono = telefono;
         this.rolUsuario = rolUsuario;
+        if (rolUsuario.equals(RolUsuario.COMPRADOR)) {
+            this.compras = new HashSet<>();
+            this.productos = null;
+        } else {
+            this.compras = null;
+            this.productos = new HashSet<>();
+        }
     }
 
     @Override

@@ -8,6 +8,4 @@ import is.pims.MercadoManazo.dto.RespuestaApi;
 public interface OpinionService {
 
 	public List<Opinion> getOpiniones();
-	public RespuestaApi createOpinion(Opinion opinion);
-	public List<Opinion> getOpiniones(int id);
 }

@@ -18,19 +18,6 @@ public class OpinionServiceImp implements OpinionService {
 	@Override
 	public List<Opinion> getOpiniones() {
 		// TODO Auto-generated method stub
-		return opinionrepository.getOpiniones();
+		return opinionrepository.findAll();
 	}
-
-	@Override
-	public RespuestaApi createOpinion(Opinion opinion) {
-		// TODO Auto-generated method stub
-		return opinionrepository.createOpinion(opinion);
-	}
-
-	@Override
-	public List<Opinion> getOpiniones(int id) {
-		// TODO Auto-generated method stub
-		return opinionrepository.getOpiniones(id);
-	}
-
 }

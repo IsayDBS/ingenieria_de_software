@@ -19,37 +19,9 @@ public class ProductoServiceImp implements ProductoService {
 	@Override
 	public List<Producto> getProductos() {
 		// TODO Auto-generated method stub
-		return productorepository.getProductos();
+		return productorepository.findAll();
 	}
 
-	@Override
-	public Producto getProducto(int id_producto, String nombre_producto) {
-		// TODO Auto-generated method stub
-		return productorepository.getProducto(id_producto, nombre_producto);
-	}
 
-	@Override
-	public RespuestaApi createProducto(Producto producto) {
-		// TODO Auto-generated method stub
-		return productorepository.createProducto(producto);
-	}
-
-	@Override
-	public RespuestaApi eliminarProducto(int id_producto) {
-		// TODO Auto-generated method stub
-		return productorepository.deleteProducto(id_producto);
-	}
-
-	@Override
-	public List<Producto> getProductosBusq(String nombre_producto) {
-		// TODO Auto-generated method stub
-		return productorepository.getProductosBusq(nombre_producto);
-	}
-
-	@Override
-	public RespuestaApi updateProducto(Producto producto, int id) {
-		// TODO Auto-generated method stub
-		return productorepository.updateProducto(producto, id);
-	}
 
 }

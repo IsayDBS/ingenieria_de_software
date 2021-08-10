@@ -1,83 +1,43 @@
 package is.pims.MercadoManazo.dto;
 
+import lombok.*;
+
+import javax.persistence.*;
+import java.util.Set;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
+
+@Entity
+@Getter
+@Setter
+@NoArgsConstructor
+@EqualsAndHashCode
+@ToString
 public class Producto {
 
-	private int id_producto;
-	private int id_vendedor;
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long id;
+
+	@ManyToOne()
+	@JoinColumn(name = "usuario_id", nullable = false)
+	private Usuario usuario;
 	private String nombre;
 	private String descripcion;
-	private float precio;
-	private int inventario;
+	private Double precio;
+	private Integer inventario;
 	private String imagen;
-	
-	public Producto() {
-		
-	}
-	
-	public Producto(int id_producto, int id_vendedor, String nombre, String descripcion, float precio, int inventario, String imagen) {
-		this.id_producto = id_producto;
-		this.id_vendedor = id_vendedor;
+	@OneToMany(mappedBy = "producto", cascade = CascadeType.ALL)
+	private Set<Compra> compras;
+
+	public Producto(Usuario usuario, String nombre, String descripcion, Double precio, Integer inventario, String imagen, Compra... compras) {
+		this.usuario = usuario;
 		this.nombre = nombre;
 		this.descripcion = descripcion;
 		this.precio = precio;
 		this.inventario = inventario;
 		this.imagen = imagen;
+		for (Compra c: compras) c.setProducto(this);
+		this.compras = Stream.of(compras).collect(Collectors.toSet());
 	}
-
-	public int getId_producto() {
-		return id_producto;
-	}
-
-	public void setId_producto(int id_producto) {
-		this.id_producto = id_producto;
-	}
-
-	public int getId_vendedor() {
-		return id_vendedor;
-	}
-
-	public void setId_vendedor(int id_vendedor) {
-		this.id_vendedor = id_vendedor;
-	}
-
-	public String getNombre() {
-		return nombre;
-	}
-
-	public void setNombre(String nombre) {
-		this.nombre = nombre;
-	}
-
-	public String getDescripcion() {
-		return descripcion;
-	}
-
-	public void setDescripcion(String descripcion) {
-		this.descripcion = descripcion;
-	}
-
-	public float getPrecio() {
-		return precio;
-	}
-
-	public void setPrecio(float precio) {
-		this.precio = precio;
-	}
-
-	public int getInventario() {
-		return inventario;
-	}
-
-	public void setInventario(int inventario) {
-		this.inventario = inventario;
-	}
-
-	public String getImagen() {
-		return imagen;
-	}
-
-	public void setImagen(String imagen) {
-		this.imagen = imagen;
-	}
-	
 }
